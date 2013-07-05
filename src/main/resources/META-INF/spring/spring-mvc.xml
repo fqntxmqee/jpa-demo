@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+	<context:component-scan base-package="org.fqntx.jpa" />
+	
+	<mvc:default-servlet-handler />
+	
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+            <bean class="org.springframework.data.web.PageableArgumentResolver" />
+        </mvc:argument-resolvers>
+        
+		<mvc:message-converters>
+			<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="jacksonObjectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<context:annotation-config />
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/jsp" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="jacksonObjectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+		<property name="annotationIntrospector" ref="jaxbAnnotationInspector" />
+	</bean>
+	<bean id="jaxbAnnotationInspector" class="com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector" />
+	
+	<context:property-placeholder location="classpath:swagger.properties"/>
+	<bean id="documentationConfig" class="com.mangofactory.swagger.configuration.DocumentationConfig"/>
+</beans>
