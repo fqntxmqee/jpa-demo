@@ -48,8 +48,7 @@ public class UserController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	@ApiOperation(value = "Find user by ID", responseClass = "org.fqntx.jpa.demo.domain.TUser",
-		notes = "Returns an user when ID < 10. ID > 10 or nonintegers will simulate API error conditions")
+	@ApiOperation(value = "Find user by ID", notes = "Returns an user when ID < 10. ID > 10 or nonintegers will simulate API error conditions")
 	public TUser getById(
 			@ApiParam(value = "ID of TUser that needs to be fetched", required = true, name = "id") @PathVariable(value = "id") Long id) {
 		return userService.findOne(id);
@@ -57,7 +56,7 @@ public class UserController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	@ApiOperation(value = "List all useres", responseClass = "org.fqntx.jpa.demo.domain.TUser")
+	@ApiOperation(value = "List all useres")
 	public Iterable<TUser> getAll() {
 		return userService.findAll();
 	}

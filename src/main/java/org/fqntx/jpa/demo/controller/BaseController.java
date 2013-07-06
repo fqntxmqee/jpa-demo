@@ -50,7 +50,7 @@ public class BaseController {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<String> handleException(Exception ex) {
-        log.error(ex);
+        log.error(ex.getMessage(), ex);
         HttpStatus statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
         if (ex instanceof HttpStatusException) {
         	statusCode = ((HttpStatusException) ex).getStatus();
