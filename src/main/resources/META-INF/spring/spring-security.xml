@@ -1,0 +1,30 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+   <http realm="Contacts Realm" auto-config="true">
+      <anonymous granted-authority="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/img/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+      <intercept-url pattern="/*" access="ROLE_ADMIN" />
+   
+      <form-login login-page="/login" default-target-url="/" authentication-failure-url="/login?login_error=1" />
+      <http-basic />
+      <logout logout-success-url="/" />
+      <remember-me />
+   </http>
+
+   <authentication-manager>
+      <authentication-provider>
+         <user-service>
+            <user name="admin" password="1" authorities="ROLE_ADMIN" />
+         </user-service>
+      </authentication-provider>
+   </authentication-manager>
+
+</beans:beans>

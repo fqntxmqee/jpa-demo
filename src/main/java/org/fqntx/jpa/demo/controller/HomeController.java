@@ -22,6 +22,11 @@ public class HomeController extends BaseController {
 		return "/index";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "/login";
+	}
+	
 	@RequestMapping(value = "/api", method = RequestMethod.GET)
     public String api() {
         return "/api";
