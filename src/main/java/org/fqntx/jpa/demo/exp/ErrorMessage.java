@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +14,6 @@ import lombok.Setter;
  * @since 2013-7-5
  * @version
  */
-@XmlRootElement
 public class ErrorMessage {
 
 	@Setter @Getter
