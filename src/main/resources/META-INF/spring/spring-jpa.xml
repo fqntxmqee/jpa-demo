@@ -14,26 +14,9 @@
 
    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="entityManagerFactory" />
-      <property name="dataSource" ref="dataSource" />
    </bean>
 
-   <bean id="entityManagerFactory"
-      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="persistenceUnitName" value="JpaDemoUnit" />
-      <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-      <property name="dataSource" ref="dataSource" />
-      <property name="jpaProperties">
-         <props>
-            <prop key="hibernate.generate_statistics">false</prop>
-            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-            <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-            <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-         </props>
-      </property>
    </bean>
-   <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-      <property name="showSql" value="true" />
-      <property name="generateDdl" value="true" />
-   </bean>
-   <bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator" />
 </beans>

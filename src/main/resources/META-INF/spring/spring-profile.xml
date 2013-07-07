@@ -11,7 +11,6 @@
 
    <beans profile="dev">
       <context:property-placeholder location="classpath:dev.properties" />
-      <jdbc:embedded-database id="dataSource" />
    </beans>
 
    <beans profile="product">
