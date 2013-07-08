@@ -12,10 +12,10 @@
          <property name="javax.persistence.jdbc.password" value=""/> -->
             
          <!-- ENABLE THESE FOR HSQLDB -->
-         <!--property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:nucleus1"/> 
-            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/> 
-            <property name="javax.persistence.jdbc.user" value="sa"/> 
-            <property name="javax.persistence.jdbc.password" value=""/ -->
+         <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:nucleus1"/> 
+         <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/> 
+         <property name="javax.persistence.jdbc.user" value="sa"/> 
+         <property name="javax.persistence.jdbc.password" value=""/>
 
          <!-- ENABLE THESE FOR ODF -->
          <!--property name="javax.persistence.jdbc.url" value="odf:file:tutorial.ods"/ -->
@@ -29,8 +29,9 @@
          <!-- ENABLE THESE FOR HBASE -->
          <!--property name="javax.persistence.jdbc.url" value="hbase:"/ -->
 
-         <!-- ENABLE THESE FOR NEO4J -->
+         <!-- ENABLE THESE FOR NEO4J 
          <property name="javax.persistence.jdbc.url" value="neo4j:testDB" />
+         -->
          <property name="datanucleus.autoCreateSchema" value="true" />
       </properties>
    </persistence-unit>

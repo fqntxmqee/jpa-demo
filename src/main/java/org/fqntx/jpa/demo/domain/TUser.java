@@ -3,12 +3,21 @@ package org.fqntx.jpa.demo.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import org.fqntx.jpa.demo.util.ConstantUtils;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,10 +25,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators.IntSequenceGenerator;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * 
@@ -58,4 +63,10 @@ public class TUser implements Serializable {
 	private Date modifyTime;
 
 	private boolean enabled;
+	
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = {CascadeType.MERGE})
+    private Set<TRole> roles;
+	
+	@ManyToOne(cascade = CascadeType.REFRESH)
+	private TOrg org;
 }
